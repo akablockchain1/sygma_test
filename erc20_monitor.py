@@ -6,6 +6,7 @@ from prometheus_client import start_http_server, Gauge
 # Connect to Ethereum node
 web3 = Web3(Web3.HTTPProvider('YOUR_INFURA_OR_ALCHEMY_HTTP_PROVIDER'))
 
+# Replace with your ERC20 contract address and ABI
 ERC20_CONTRACT_ADDRESS = '0xYourContractAddress'
 ERC20_ABI = 'YourContractABI'
 

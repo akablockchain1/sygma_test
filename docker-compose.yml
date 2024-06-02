@@ -29,12 +29,14 @@ services:
     volumes:
       - ./grafana/provisioning:/etc/grafana/provisioning
 
-  ethereum-exporter:
-    image: hunterlong/geth-exporter:latest
-    environment:
-      - GETH_URL=http://ethereum-node:8545
-    ports:
-      - '9368:9368'
+#  ethereum-exporter:
+#    image: hunterlong/geth-exporter:latest
+#    environment:
+#      - GETH_URL=http://ethereum-node:8545
+#    ports:
+#      - '9368:9368'
+
+#https://geth.ethereum.org/docs/monitoring/dashboards
 
 networks:
   monitoring:
