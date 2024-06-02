@@ -1,0 +1,29 @@
+groups:
+  - name: erc20_alerts
+    rules:
+    - alert: HighTransactionFailures
+      expr: erc20_tx_failures > 10
+      for: 5m
+      labels:
+        severity: warning
+      annotations:
+        summary: "High number of transaction failures"
+        description: "Transaction failures have exceeded 10 in the last 5 minutes."
+
+    - alert: HighGasUsage
+      expr: erc20_gas_usage > 1000000
+      for: 5m
+      labels:
+        severity: warning
+      annotations:
+        summary: "High gas usage"
+        description: "Gas usage has exceeded 1,000,000 in the last 5 minutes."
+
+    - alert: HighContractInteractions
+      expr: erc20_contract_interactions > 50
+      for: 5m
+      labels:
+        severity: warning
+      annotations:
+        summary: "High number of contract interactions"
+        description: "Contract interactions have exceeded 50 in the last 5 minutes."

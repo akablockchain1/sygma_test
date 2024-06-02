@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  erc20_monitor:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    networks:
+      - monitoring
+
+  prometheus:
+    image: prom/prometheus:latest
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./alert_rules.yml:/etc/prometheus/alert_rules.yml
+    ports:
+      - "9090:9090"
+    networks:
+      - monitoring
+
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    networks:
+      - monitoring
+    volumes:
+      - ./grafana/provisioning:/etc/grafana/provisioning
+
+  ethereum-exporter:
+    image: hunterlong/geth-exporter:latest
+    environment:
+      - GETH_URL=http://ethereum-node:8545
+    ports:
+      - '9368:9368'
+
+networks:
+  monitoring:
+    driver: bridge
